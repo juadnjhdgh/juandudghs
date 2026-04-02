@@ -3,96 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Arte de Habitarnos</title>
+    <title>Para Ti, Con Amor</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital@0;1&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:italic,wght@400;700&display=swap');
 
         body {
-            background-color: #f9f7f2;
-            color: #2c2c2c;
-            font-family: 'Lora', serif;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            line-height: 1.8;
+            height: 100vh;
+            background-color: #fdf2f2;
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+            color: #5a3e3e;
         }
 
         .container {
-            max-width: 650px;
-            padding: 60px;
-            background: #ffffff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-radius: 2px;
             text-align: center;
-            border: 1px solid #eee;
+            z-index: 10;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 80%;
+            border: 1px solid #f2d7d7;
+            animation: fadeIn 3s ease-in;
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            letter-spacing: 2px;
-            color: #1a1a1a;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #b35d5d;
         }
 
         p {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            text-align: justify;
-        }
-
-        .highlight {
-            color: #8e735b;
-            font-weight: bold;
-        }
-
-        blockquote {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.3rem;
-            margin: 40px 0;
-            padding: 20px;
-            border-top: 1px solid #d4af37;
-            border-bottom: 1px solid #d4af37;
-            color: #555;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
         .signature {
-            margin-top: 50px;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            color: #8e735b;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #b35d5d;
+            margin-top: 20px;
         }
 
-        .ornament {
-            display: block;
-            margin: 20px auto;
-            width: 50px;
-            opacity: 0.5;
+        /* Corazones flotantes de fondo */
+        .heart {
+            position: absolute;
+            color: #ffb7b7;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: float 10s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>El Arte de Habitarnos</h1>
-        
-        <p>Existen encuentros que no pertenecen al azar, sino a una suerte de <span class="highlight">geometría sagrada</span>. Amarte no es un evento fortuito, sino el oficio más noble que mi alma ha decidido ejercer. Es una entrega que prescinde de la urgencia, una danza serena donde el tiempo se detiene a observar cómo dos destinos deciden entrelazarse sin nudos, solo con la suavidad de la seda.</p>
-
-        <p>Tu presencia ha transformado mi mundo en un <span class="highlight">manuscrito iluminado</span>. Cada palabra que pronuncias tiene el peso del oro y la ligereza del ala; cada silencio compartido es un refugio donde la vida, finalmente, tiene sentido. No te amo con la fragilidad de lo efímero, sino con la solidez de lo eterno, allí donde la pasión se decanta en ternura y la admiración se vuelve nuestra lengua materna.</p>
-
-        <blockquote>
-            "Eres el eco de una música que mi corazón ya conocía antes de escucharte, la claridad que precede a la aurora y el refugio donde mis tormentas aprenden a ser calma."
-        </blockquote>
-
-        <p>En este sutil incendio de los sentidos, me reconozco en tus ojos. Eres mi hogar sin muros, mi viaje sin distancia y la prueba irrefutable de que la belleza, cuando es pura, no necesita de más adorno que la <span class="highlight">verdad</span>.</p>
-
-        <div class="signature">Sinceramente,</div>
-        <div class="ornament">❦</div>
+        <h1>Para el amor de mi vida</h1>
+        <p>
+            Dicen que el mundo es demasiado grande, pero para mí,<br>
+            el universo entero se resume en el brillo de tus ojos <br>
+            y en la calma que siento cuando estoy a tu lado.
+        </p>
+        <p>Gracias por ser mi refugio y mi aventura favorita.</p>
+        <div class="signature">Te amo hoy y siempre.</div>
     </div>
 
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
 </body>
 </html>
