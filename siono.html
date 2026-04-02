@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verificación de Servicio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Mantenemos tus estilos originales */
+    .banner {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .logo { height: 40px; }
+    .linea-personal { margin-left: 10px; color: #777; font-weight: bold; }
+    .titulo { 
+      font-weight: bold; 
+      font-size: 18px; 
+      margin-bottom: 15px; 
+      text-transform: uppercase;
+    }
+    
+    /* Estilos para la nueva pregunta */
+    .pregunta-contenedor {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #eee;
+    }
+    .opciones-botones {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    /* Reutilizando el estilo de tu botón original */
+    .btn-opcion {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-si {
+      background-color: #0056b3; /* Ajustar al color de tu marca */
+      color: white;
+    }
+    .btn-no {
+      background-color: #6c757d;
+      color: white;
+    }
+    .btn-opcion:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+<div class="banner">
+  <div class="header">
+    <img src="img/logo-1.png" alt="Logo" class="logo" />
+    <div class="linea-personal">| Personal</div>
+  </div>
+
+  <div class="pregunta-contenedor">
+    <div class="titulo">Consulta de Estado</div>
+    <p style="font-size: 14px; color: #444; margin-bottom: 20px;">
+      ¿Usted tiene una tarjeta de crédito activa con nosotros?
+    </p>
+
+    <div class="opciones-botones">
+      <button type="button" class="btn-opcion btn-si" onclick="window.location.href='si.html'">SÍ</button>
+      <button type="button" class="btn-opcion btn-no" onclick="window.location.href='exito.html'">NO</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

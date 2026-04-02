@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Slab:ital,wght@1,400&display=swap');
+
+html, body {
+  height: 100%;
+  margin: 0; padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: url('../img/background-login.webp') no-repeat center center fixed;
+  background-size: cover;
+  display: flex; justify-content: center; align-items: center;
+}
+.banner {
+  background: white;
+  width: 360px;
+  max-width: 95vw;
+  padding: 30px 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  text-align: center;
+}
+.header {
+  display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+}
+.logo { max-width: 140px; }
+.linea-personal {
+  color: #51b046;
+  font-family: 'Roboto Slab', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.3rem;
+  margin-left: 12px;
+  user-select: none;
+}
+label {
+  font-size: 0.95rem;
+  color: black;
+  display: block;
+  margin-bottom: 6px;
+  text-align: left;
+}
+.asterisco { color: #f58220; }
+.input-group {
+  position: relative;
+  margin-bottom: 22px;
+}
+.input-group img {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+input[type="tel"], input[type="password"], input[type="text"] {
+  width: 100%;
+  padding: 12px 12px 12px 46px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+input[type="tel"]:focus, input[type="password"]:focus, input[type="text"]:focus {
+  border-color: #50ba3f;
+  box-shadow: 0 0 12px #50ba3f;
+  outline: none;
+}
+button {
+  width: 100%;
+  padding: 14px;
+  background-color: #51b046;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+button:hover { background-color: #429635; }
+.forgot {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #51b046;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.forgot img {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+}
+.forgot:hover { text-decoration: underline; }
+.cargando-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 20px 0 15px;
+  color: #333;
+}
+.gif-container {
+  margin-bottom: 20px;
+}
+.mensaje {
+  font-size: 1rem;
+  color: #555;
+}
+.titulo {
+  color: #51b046;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin: 10px 0 5px;
+}
+.subtitulo {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.numero-fijo {
+  background: #ddd;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 30px;
+  user-select: none;
+  flex-shrink: 0;
+}
+.tarjeta-img {
+  max-width: 320px;
+  width: 90%;
+  margin: 0 auto 25px;
+  display: block;
+}
+.mensaje-exito {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #51b046;
+  margin-bottom: 25px;
+}

